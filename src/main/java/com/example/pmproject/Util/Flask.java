@@ -28,6 +28,10 @@ public class Flask {
 
     private JSONObject jsonObject = new JSONObject();
 
+    public JSONObject getJsonObject() {
+        return jsonObject;
+    }
+
     private String getBase64String(MultipartFile multipartFile) throws Exception {
         byte[] bytes = multipartFile.getBytes();
         return Base64.getEncoder().encodeToString(bytes);
@@ -61,7 +65,6 @@ public class Flask {
         try(FileOutputStream fos = new FileOutputStream(outputFilePath)) {
             fos.write(decodedImageDate);
         }
-
 
     }
 }
