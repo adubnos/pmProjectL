@@ -70,7 +70,7 @@
                   <input type="hidden" name=basketId th:value="${basketDTOS.basketId}">
                   <td><img th:src="|/images/product/@{${basketDTOS.product.img}}|" style="max-width: 100px; min-width: 100px" alt="제품 이미지 없음"></td>
                   <td th:text="${basketDTOS.product.name}"></td>
-                  <td style="width: 10%; text-align: center;"><input type="text" class="form-control" name="quantity" style="width: 90%; margin: auto;" oninput="restrictToNumbers(this)" th:placeholder="${basketDTOS.quantity}"></td>
+                  <td style="width: 10%; text-align: center;"><input type="text" class="form-control" name="quantity" style="width: 90%; margin: auto;" oninput="restrictToNumbers(this)" th:placeholder="${basketDTOS.quantity}" required></td>
                   <td th:text="${basketDTOS.product.price}"></td>
                   <td th:text="${basketDTOS.tPrice}"></td>
                   <td>
