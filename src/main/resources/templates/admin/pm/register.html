@@ -78,7 +78,7 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="location" class="form-label">위치 : </label>
+                                        <label for="location" class="form-label">위치 (도로명 주소) : </label>
                                         <input type="text" class="form-control" id="location" name="location" th:field="*{location}">
                                         <p class="text-danger" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></p>
                                     </div>
