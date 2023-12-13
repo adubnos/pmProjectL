@@ -1,35 +1,35 @@
 package com.example.pmproject.Controller;
 
+import com.example.pmproject.Constant.Role;
 import com.example.pmproject.DTO.PmDTO;
-import com.example.pmproject.DTO.PmUseDTO;
+import com.example.pmproject.Service.MemberService;
 import com.example.pmproject.Service.PmService;
 import com.example.pmproject.Service.PmUseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("")
 public class PmController {
 
     private final PmService pmService;
-    private final PmUseService pmUseService;
 
     @GetMapping({"/admin/pm/list","/user/pm/list"})
     public String pmList(@PageableDefault(page=1) Pageable pageable, @RequestParam(value = "keyword", defaultValue = "") String keyword, Model model) {
@@ -65,6 +65,7 @@ public class PmController {
         if(bindingResult.hasErrors()) {
             return "admin/pm/register";
         }
+
         pmService.register(pmDTO, imgFile);
 
         return "redirect:/admin/pm/list";

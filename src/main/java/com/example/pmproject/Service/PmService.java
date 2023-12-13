@@ -51,13 +51,17 @@ public class PmService {
     }
 
     public void register(PmDTO pmDTO, MultipartFile imgFile) throws Exception {
-        String originalFileName = imgFile.getOriginalFilename();
-        String newFileName = "";
+        if(imgFile !=null) {
+            String originalFileName = imgFile.getOriginalFilename();
+            String newFileName = "";
 
-        if(originalFileName != null) {
-            newFileName = fileService.upload(originalFileName, pmImgUploadLocation, imgFile.getBytes());
+            if(originalFileName != null) {
+                newFileName = fileService.upload(originalFileName, pmImgUploadLocation, imgFile.getBytes());
+            }
+            pmDTO.setImg(newFileName);
+        }else {
+            pmDTO.setImg(null);
         }
-        pmDTO.setImg(newFileName);
         pmDTO.setIsUse(true);
         Pm pm=modelMapper.map(pmDTO, Pm.class);
         pmRepository.save(pm);
