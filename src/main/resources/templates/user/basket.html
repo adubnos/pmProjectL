@@ -39,7 +39,7 @@
             </li>
             <li class="nav-item" style="text-align: center">
               <a class="nav-link" href="/user/basket">
-                장바구니
+                주문 내역
               </a>
             </li>
             <li class="nav-item mb-3" style="text-align: center">
@@ -70,7 +70,7 @@
                   <input type="hidden" name=basketId th:value="${basketDTOS.basketId}">
                   <td><img th:src="|/images/product/@{${basketDTOS.product.img}}|" style="max-width: 100px; min-width: 100px" alt="제품 이미지 없음"></td>
                   <td th:text="${basketDTOS.product.name}"></td>
-                  <td style="width: 10%; text-align: center;"><input type="text" class="form-control" name="quantity" style="width: 90%; margin: auto;" oninput="restrictToNumbers(this)" th:placeholder="${#numbers.formatInteger(basketDTOS.quantity, 0, 'COMMA')}"></td>
+                  <td style="width: 10%; text-align: center;"><input type="text" class="form-control" name="quantity" style="width: 90%; margin: auto;" oninput="restrictToNumbers(this)" th:placeholder="${#numbers.formatInteger(basketDTOS.quantity, 0, 'COMMA')}" required></td>
                   <td th:text="${#numbers.formatInteger(basketDTOS.product.price, 0, 'COMMA')}"></td>
                   <td th:text="${#numbers.formatInteger(basketDTOS.tPrice, 0, 'COMMA')}"></td>
                   <td>

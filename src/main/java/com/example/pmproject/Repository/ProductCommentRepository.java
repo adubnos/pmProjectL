@@ -12,7 +12,5 @@ public interface ProductCommentRepository extends JpaRepository<ProductComment, 
     @Query("select u From ProductComment u Where u.product.productId = :productId")
     List<ProductComment> findByProductId(@Param("productId") Long productId);
 
-    @Query("select u from ProductComment u where u.member.name = :memberName")
-    List<ProductComment> findByMemberName(@Param("memberName") String memberName);
 
 }

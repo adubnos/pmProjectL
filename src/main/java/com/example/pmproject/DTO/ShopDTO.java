@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
@@ -24,6 +25,7 @@ public class ShopDTO {
     @NotEmpty(message = "매장 주소는 필수 입력 사항입니다.")
     private String location;
 
+    @NotNull(message = "매장 전화 번호는 필수 입력 사항입니다.")
     private String tel;
 
     private String img;

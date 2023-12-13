@@ -12,6 +12,4 @@ public interface ShopCommentRepository extends JpaRepository<ShopComment, Long> 
     @Query("select u From ShopComment u Where u.shop.shopId = :shopId")
     List<ShopComment> findByShopId(@Param("shopId") Long shopId);
 
-    @Query("select u from ShopComment u where u.member.name = :memberName")
-    List<ShopComment> findByMemberName(@Param("memberName") String memberName);
 }

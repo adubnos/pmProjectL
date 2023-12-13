@@ -70,7 +70,6 @@ public class BasketController {
     public String add(Integer quantity, Long productId, Authentication authentication, RedirectAttributes redirectAttributes) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         MemberDTO memberDTO=memberService.listOne(userDetails.getUsername());
-        Role role = memberDTO.getRole();
         String name = memberDTO.getName();
         try{
             basketService.addToCart(name, quantity, productId);
