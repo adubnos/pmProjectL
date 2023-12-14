@@ -62,17 +62,22 @@ public class ProductService {
         Product product = productRepository.findById(productDTO.getProductId()).orElseThrow();
         String deleteFile = product.getImg();
 
-        String originalFileName = imgFile.getOriginalFilename();
-        String newFileName = "";
+        if (imgFile != null) {
+            String originalFileName = imgFile.getOriginalFilename();
+            String newFileName = "";
 
-        if(originalFileName.length() != 0) {
-            if(deleteFile.length() != 0) {
-                fileService.deleteFile(deleteFile, productImgUploadLocation);
+            if(originalFileName.length() != 0) {
+                if(deleteFile != null) {
+                    fileService.deleteFile(deleteFile, productImgUploadLocation);
+                }
+
+                newFileName = fileService.upload(originalFileName, productImgUploadLocation, imgFile.getBytes());
+                productDTO.setImg(newFileName);
             }
-
-            newFileName = fileService.upload(originalFileName, productImgUploadLocation, imgFile.getBytes());
-            productDTO.setImg(newFileName);
+        }else {
+            productDTO.setImg(product.getImg());
         }
+
         productDTO.setProductId(product.getProductId());
         Product modify=modelMapper.map(productDTO, Product.class);
 
@@ -81,7 +86,9 @@ public class ProductService {
 
     public void delete(Long productId) throws Exception {
         Product product = productRepository.findById(productId).orElseThrow();
-        fileService.deleteFile(product.getImg(), productImgUploadLocation);
+        if(product.getImg() != null) {
+            fileService.deleteFile(product.getImg(), productImgUploadLocation);
+        }
 
         productRepository.deleteById(productId);
     }

@@ -80,7 +80,7 @@
                                 <td th:text="${pmUseDTOS.finishLocation}"></td>
                                 <td th:text="${#temporals.format(pmUseDTOS.regDate, 'yy/MM/dd HH:mm')}"></td>
                                 <td th:text="${#temporals.format(pmUseDTOS.modDate, 'yy/MM/dd HH:mm')}"></td>
-                                <td class="d-flex">
+                                <td>
                                     <span th:if="${pmUseDTOS.isUse}">
                                         <button type="button" class="btn btn-outline-secondary" disabled>사용완료</button>
                                     </span>

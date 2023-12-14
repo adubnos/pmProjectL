@@ -76,16 +76,20 @@ public class PmService {
         Pm pm = pmRepository.findById(pmDTO.getPmId()).orElseThrow();
         String deleteFile = pm.getImg();
 
-        String originalFileName = imgFile.getOriginalFilename();
-        String newFileName = "";
+        if(imgFile != null) {
+            String originalFileName = imgFile.getOriginalFilename();
+            String newFileName = "";
 
-        if(originalFileName.length() != 0) {
-            if(deleteFile.length() != 0) {
-                fileService.deleteFile(deleteFile, pmImgUploadLocation);
+            if(originalFileName.length() != 0) {
+                if(deleteFile != null) {
+                    fileService.deleteFile(deleteFile, pmImgUploadLocation);
+                }
+
+                newFileName = fileService.upload(originalFileName, pmImgUploadLocation, imgFile.getBytes());
+                pmDTO.setImg(newFileName);
             }
-
-            newFileName = fileService.upload(originalFileName, pmImgUploadLocation, imgFile.getBytes());
-            pmDTO.setImg(newFileName);
+        }else {
+            pmDTO.setImg(pm.getImg());
         }
         pmDTO.setPmId(pm.getPmId());
         pmDTO.setIsUse(pm.getIsUse());
@@ -96,8 +100,9 @@ public class PmService {
 
     public void delete(Long pmId) throws Exception {
         Pm pm = pmRepository.findById(pmId).orElseThrow();
-        fileService.deleteFile(pm.getImg(), pmImgUploadLocation);
-
+        if(pm.getImg() != null) {
+            fileService.deleteFile(pm.getImg(), pmImgUploadLocation);
+        }
         pmRepository.deleteById(pmId);
     }
 

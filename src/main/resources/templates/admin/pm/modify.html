@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="location" class="form-label">위치 : </label>
-                                        <input type="text" class="form-control" id="location" name="location" th:field="*{location}" readonly>
+                                        <input type="text" class="form-control" id="location" name="location" th:field="*{location}" required>
                                         <p class="text-danger" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></p>
                                     </div>
                                     <div class="mb-3">

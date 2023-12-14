@@ -69,17 +69,22 @@ public class ShopService {
         Shop shop = shopRepository.findById(shopDTO.getShopId()).orElseThrow();
         String deleteFile = shop.getImg();
 
-        String originalFileName = imgFile.getOriginalFilename();
-        String newFileName = "";
+        if(imgFile != null) {
+            String originalFileName = imgFile.getOriginalFilename();
+            String newFileName = "";
 
-        if(originalFileName.length() != 0) {
-            if(deleteFile.length() != 0 ) {
-                fileService.deleteFile(deleteFile, shopImgUploadLocation);
+            if(originalFileName.length() != 0) {
+                if(deleteFile != null ) {
+                    fileService.deleteFile(deleteFile, shopImgUploadLocation);
+                }
+
+                newFileName = fileService.upload(originalFileName, shopImgUploadLocation, imgFile.getBytes());
+                shopDTO.setImg(newFileName);
             }
-
-            newFileName = fileService.upload(originalFileName, shopImgUploadLocation, imgFile.getBytes());
-            shopDTO.setImg(newFileName);
+        }else {
+            shopDTO.setImg(shop.getImg());
         }
+
         shopDTO.setShopId(shop.getShopId());
         Shop modify = modelMapper.map(shopDTO, Shop.class);
 
@@ -88,7 +93,9 @@ public class ShopService {
 
     public void delete(Long shopId) throws Exception {
         Shop shop = shopRepository.findById(shopId).orElseThrow();
-        fileService.deleteFile(shop.getImg(), shopImgUploadLocation);
+        if(shop.getImg() != null) {
+            fileService.deleteFile(shop.getImg(), shopImgUploadLocation);
+        }
 
         shopRepository.deleteById(shopId);
     }

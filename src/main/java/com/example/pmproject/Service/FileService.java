@@ -14,7 +14,7 @@ public class FileService {
         String extendsion = originalFileName.substring(
                 originalFileName.lastIndexOf(".")
         ); //문자열 분리
-        String saveFileName = uuid +extendsion; //새로운 파일명
+        String saveFileName = uuid+extendsion; //새로운 파일명
         String uploadFullUrl = uploadPath+saveFileName; //저장위치 및 파일명
 
         //하드디스크에 파일 저장

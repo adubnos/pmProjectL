@@ -88,6 +88,7 @@
                                 </td>
                                 <td>
                                     <span>
+                                        <button type="button" class="btn btn-warning" th:data-location="${pmDTOS.location}" onclick="location.href='https://map.kakao.com/link/search/'+this.getAttribute('data-location');" target="_blank">위치보기</button>
                                         <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/admin/pm/modify(pmId=${pmDTOS.pmId})}'|">수정</button>
                                         <button type="button" class="btn btn-danger" th:onclick="|location.href='@{/admin/pm/delete(pmId=${pmDTOS.pmId})}'|">삭제</button>
                                     </span>
