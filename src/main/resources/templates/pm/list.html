@@ -40,6 +40,7 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="pmDTOS:${pmDTOS}" class="inner-box">
+                                        <input type="hidden" th:value="${pmDTOS.pmId}">
                                         <td>
                                             <span th:if="${pmDTOS.type==1}">전동 킥보드</span>
                                             <span th:if="${pmDTOS.type==2}">전기자전거</span>

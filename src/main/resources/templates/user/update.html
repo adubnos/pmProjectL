@@ -67,9 +67,8 @@
                                         <p class="text-danger" th:if="${wrongPwd}" th:text="${wrongPwd}"></p>
                                         <div class="mb-3">
                                             <label class="form-label" for="newPassword">변경할 비밀번호(8~16 자리) : </label>
-                                            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                                            <input type="password" class="form-control" id="newPassword" name="newPassword" pattern=".{8,16}" title="8자 이상, 16자 미만의 비밀번호를 입력하세요." required>
                                         </div>
-                                        <p class="text-danger" th:if="${#fields.hasErrors('memberUpdateDTO.newPassword')}" th:errors="*{MemberUpdateDTO.newPassword}"></p>
                                         <div class="mb-3">
                                             <label class="form-label" for="name">닉네임 : </label>
                                             <input type="text" class="form-control" id="name" name="name" th:value="${memberDTO.name}" required>

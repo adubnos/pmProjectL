@@ -34,7 +34,7 @@
                             <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                             <div class="mb-3">
                                 <label class="form-label" for="password">비밀번호(8~16 자리) : </label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                <input type="password" class="form-control" id="password" name="password" minlength="8" maxlength="16">
                             </div>
                             <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
                             <div class="mb-3">

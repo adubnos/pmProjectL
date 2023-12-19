@@ -14,7 +14,6 @@ public class MemberUpdateDTO {
 
     private String recentPassword;
 
-    @Length(min=8, max=16, message = "비밀번호는 8자 이상, 16자 이하로 입력하여 주십시오.")
     private String newPassword;
 
     private String name;

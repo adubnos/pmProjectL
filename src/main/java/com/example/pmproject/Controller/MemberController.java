@@ -41,12 +41,14 @@ public class MemberController {
     }
 
     @PostMapping("/user/update")
-    public String memberUpdate(@Valid MemberUpdateDTO memberUpdateDTO, MemberDTO memberDTO, BindingResult bindingResult, Model model, Authentication authentication) {
+    public String memberUpdate(@Valid MemberUpdateDTO memberUpdateDTO, BindingResult bindingResult, Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
         if(bindingResult.hasErrors()) {
             return "user/update";
         }
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
         try {
             String result = memberService.update(memberUpdateDTO, userDetails.getUsername());
             if(result==null) {
